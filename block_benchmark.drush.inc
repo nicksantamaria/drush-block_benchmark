@@ -38,6 +38,8 @@ function drush_block_benchmark() {
       drupal_alter("block_view_{$block->module}_{$delta}", $data, $block);
       drupal_alter("block_view", $data, $block);
 
+      render($data);
+
       timer_stop($timer_name);
 
       $benchmark_data["${module}_${delta}"] = array(
