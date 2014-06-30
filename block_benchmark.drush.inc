@@ -44,7 +44,7 @@ function drush_block_benchmark() {
 
       $benchmark_data["${module}_${delta}"] = array(
         'module' => $module,
-        'label' => $blocks[$module][$delta]['info'],
+        'label' => substr($blocks[$module][$delta]['info'], 0, 48),
         'delta' => $delta,
         'timer' => timer_read($timer_name),
       );
@@ -53,7 +53,7 @@ function drush_block_benchmark() {
 
   uasort($benchmark_data, 'drush_block_benchmark_sort_timer');
 
-  array_unshift($benchmark_data, array('Module', 'Delta', 'Time (ms)'));
+  array_unshift($benchmark_data, array('Module', 'Delta', 'Label', 'Time (ms)'));
   drush_print_table($benchmark_data, TRUE);
 }
 
